@@ -12,9 +12,11 @@ function piratentools_npt_options() {
 	$options = get_option("piratentools-npt");
 	
 	if ($_POST['pt-npt-action'] == "add") {
+		if (!$options["nextid"]) $options["nextid"] = 1;
 		$nextid = $options["nextid"]++;
 		$upd_calurl = $_POST['pt-npt-add-calurl'];
 		$upd_searchstring = $_POST['pt-npt-add-searchstring'];
+		$upd_offset = $_POST['pt-npt-add-offset'];
 		$options["content"][$nextid]["calurl"] = $upd_calurl;
 		$options["content"][$nextid]["searchstring"] = $upd_searchstring;
 		$options["content"][$nextid]["offset"] = $upd_offset;
@@ -140,6 +142,31 @@ function piratentools_npt_shortcode($atts) {
 		$gevents0[$id] = $events0;
 	}
 
+	$trans = array(
+		'Monday'    => 'Montag',
+		'Tuesday'   => 'Dienstag',
+		'Wednesday' => 'Mittwoch',
+		'Thursday'  => 'Donnerstag',
+		'Friday'    => 'Freitag',
+		'Saturday'  => 'Samstag',
+		'Sunday'    => 'Sonntag',
+		'Mon'       => 'Mo',
+		'Tue'       => 'Di',
+		'Wed'       => 'Mi',
+		'Thu'       => 'Do',
+		'Fri'       => 'Fr',
+		'Sat'       => 'Sa',
+		'Sun'       => 'So',
+		'January'   => 'Januar',
+		'February'  => 'Februar',
+		'March'     => 'März',
+		'May'       => 'Mai',
+		'June'      => 'Juni',
+		'July'      => 'Juli',
+		'October'   => 'Oktober',
+		'December'  => 'Dezember'
+	);
+	
 	$e_start = $ical->iCalDateToUnixTimestamp($events0['DTSTART'])+(get_option('gmt_offset')*3600);
 	$e_end = $ical->iCalDateToUnixTimestamp($events0['DTEND'])+(get_option('gmt_offset')*3600);
 	$e_location = $events0['LOCATION'];
@@ -153,6 +180,7 @@ function piratentools_npt_shortcode($atts) {
 		$string = str_replace("%ORT%", $e_location, $string);
 		//$string = str_replace("%DATUM", date("d.m.Y H:i", $e_start+(get_option('gmt_offset')*3600)), $string);
 		$string = preg_replace('/(\{(.*?)})/e', 'date("$2", $e_start)', $string);
+		$string = strtr($string, $trans); 
 		return $string;
 	} else {
 		return $atts['else'];
