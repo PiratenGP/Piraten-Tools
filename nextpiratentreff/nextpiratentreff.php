@@ -15,35 +15,36 @@ class PT_nextpiratentreff {
 
 
 		$data = array();
-		foreach($evts as $id => $ev) {
-			$jsEvt = array(
-				"id" => ($id+1),
-				"title" => $ev->getProperty('summary'),
-				"start" => $ev->getStart(),
-				"end"   => $ev->getEnd()-1,
-				"allDay" => $ev->isWholeDay()
-			);
+		if (is_array($evts)) {
+			foreach($evts as $id => $ev) {
+				$jsEvt = array(
+					"id" => ($id+1),
+					"title" => $ev->getProperty('summary'),
+					"start" => $ev->getStart(),
+					"end"   => $ev->getEnd()-1,
+					"allDay" => $ev->isWholeDay()
+				);
 
-			if (isset($ev->recurrence)) {
-				$count = 0;
-				$start = $ev->getStart();
-				$freq = $ev->getFrequency();
-				if ($freq->firstOccurrence() == $start)
+				if (isset($ev->recurrence)) {
+					$count = 0;
+					$start = $ev->getStart();
+					$freq = $ev->getFrequency();
+					if ($freq->firstOccurrence() == $start)
+						$data[] = $jsEvt;
+					while (($next = $freq->nextOccurrence($start)) > 0 ) {
+						if (!$next or $count >= 1000) break;
+						$count++;
+						$start = $next;
+						$jsEvt["start"] = $start;
+						$jsEvt["end"] = $start + $ev->getDuration()-1;
+
+						$data[] = $jsEvt;
+					}
+				} else
 					$data[] = $jsEvt;
-				while (($next = $freq->nextOccurrence($start)) > 0 ) {
-					if (!$next or $count >= 1000) break;
-					$count++;
-					$start = $next;
-					$jsEvt["start"] = $start;
-					$jsEvt["end"] = $start + $ev->getDuration()-1;
 
-					$data[] = $jsEvt;
-				}
-			} else
-				$data[] = $jsEvt;
-
+			}
 		}
-		
 		PT_nextpiratentreff::$data[$calfile] = $data;
 	}
 	
@@ -84,7 +85,7 @@ class PT_nextpiratentreff {
 			//$string = strtr($string, $trans); 
 			return $string;
 		} else {
-			return $atts['else']."asd";
+			return $atts['else'];
 		}
 	}
 	
