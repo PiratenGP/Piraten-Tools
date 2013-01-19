@@ -33,14 +33,11 @@ add_action( 'admin_menu', 'piratentools_main_menu' );
 function piratentools_main_menu() {
 	//add_options_page( 'My Plugin Options', 'My Plugin', 'manage_options', 'my-unique-identifier', 'my_plugin_options' );
     add_menu_page( "Piraten-Tools", "Piraten-Tools", 0, "piratentools", "piratentools_main_options" );
-	add_submenu_page( "piratentools", "Next Piratentreff", "Next Piratentreff", 0, "pt_nextpiratentreff", array("PT_nextpiratentreff", "adminmenu") );
-	add_submenu_page( "piratentools", "Wiki Import", "Wiki Import", 0, "pt_wikiimport", array("PT_wikiimport", "adminmenu") );
+	add_submenu_page( "piratentools", "Next Piratentreff", "Next Piratentreff", "manage_options", "pt_nextpiratentreff", array("PT_nextpiratentreff", "adminmenu") );
+	add_submenu_page( "piratentools", "Wiki Import", "Wiki Import", "manage_options", "pt_wikiimport", array("PT_wikiimport", "adminmenu") );
 }
 
 function piratentools_main_options() {
-	if ( !current_user_can( 'manage_options' ) )  {
-		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
-	}
 	echo '<div class="wrap">';
 	echo '<h2>Piraten-Tools</h2>';
 	echo '</div>';
