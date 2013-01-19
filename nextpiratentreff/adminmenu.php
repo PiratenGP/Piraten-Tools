@@ -2,7 +2,7 @@
 
 		<h2>Piraten-Tools › Next Piratentreff</h2>
 		<form method="POST">
-		<h3>Neue Suchmaske</h3>
+		<h3>Neuer Eintrag</h3>
 		<table  class="pttable">
 			<tr>
 				<td>Kalender-URL:</td>
@@ -28,7 +28,7 @@
 
 		</form>
 		
-		<h3>Suchmasken</h3>
+		<h3>Einträge</h3>
 		<form method="POST">
 		<table class="pttable">
 			<tr>
