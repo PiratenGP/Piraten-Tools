@@ -60,7 +60,7 @@ class PT_nextpiratentreff {
 		$id = $atts['id'];	
 		$searchstring = $options['content'][$id]['searchstring'];
 		$calurl = $options['content'][$id]['calurl'];
-		$offset = $options['content'][$id]['offset'];
+		$offset = $options['content'][$id]['offset']*60;
 		$remove = $atts['remove'];
 		
 		if (PT_nextpiratentreff::$found[$id]) {
