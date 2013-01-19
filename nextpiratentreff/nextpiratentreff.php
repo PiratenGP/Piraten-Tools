@@ -74,7 +74,6 @@ class PT_nextpiratentreff {
 			}
 		}
 
-	print_r($event0);
 		$e_title = $event0['title'];
 		$e_title2 = trim(str_replace($remove, "", $e_title));
 		if ($event0) {
