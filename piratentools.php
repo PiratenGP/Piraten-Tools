@@ -6,7 +6,7 @@ Description: Piraten-Tools
 Version: 0.1
 Author: @stoppegp
 Author URI: https://twitter.com/stoppegp
-License: GPL2
+License: CC BY-SA 2.0
 */
 ?>
 <?php
@@ -33,7 +33,7 @@ add_action( 'admin_menu', 'piratentools_main_menu' );
 function piratentools_main_menu() {
 	//add_options_page( 'My Plugin Options', 'My Plugin', 'manage_options', 'my-unique-identifier', 'my_plugin_options' );
     add_menu_page( "Piraten-Tools", "Piraten-Tools", 0, "piratentools", "piratentools_main_options" );
-	add_submenu_page( "piratentools", "Next Piratentreff", "Next Piratentreff", 0, "piratentools-npt", "piratentools_npt_options" );
+	add_submenu_page( "piratentools", "Next Piratentreff", "Next Piratentreff", 0, "piratentools-npt", array("PT_nextpiratentreff", "piratentools_npt_options") );
 }
 
 function piratentools_main_options() {
