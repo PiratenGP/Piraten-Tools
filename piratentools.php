@@ -33,7 +33,8 @@ add_action( 'admin_menu', 'piratentools_main_menu' );
 function piratentools_main_menu() {
 	//add_options_page( 'My Plugin Options', 'My Plugin', 'manage_options', 'my-unique-identifier', 'my_plugin_options' );
     add_menu_page( "Piraten-Tools", "Piraten-Tools", 0, "piratentools", "piratentools_main_options" );
-	add_submenu_page( "piratentools", "Next Piratentreff", "Next Piratentreff", 0, "piratentools-npt", array("PT_nextpiratentreff", "adminmenu") );
+	add_submenu_page( "piratentools", "Next Piratentreff", "Next Piratentreff", 0, "pt_nextpiratentreff", array("PT_nextpiratentreff", "adminmenu") );
+	add_submenu_page( "piratentools", "Wiki Import", "Wiki Import", 0, "pt_wikiimport", array("PT_wikiimport", "adminmenu") );
 }
 
 function piratentools_main_options() {
@@ -48,4 +49,5 @@ function piratentools_main_options() {
 
 <?php
 require('nextpiratentreff/nextpiratentreff.php');
+require('wikiimport/wikiimport.php');
 ?>
