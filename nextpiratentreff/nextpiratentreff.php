@@ -55,7 +55,7 @@ class PT_nextpiratentreff {
 	}
 	
 	static public function shortcode($atts) {
-		$options = get_option("piratentools-npt");
+		$options = get_option("pt_nextpiratentreff");
 		$id = $atts['id'];	
 		$searchstring = $options['content'][$id]['searchstring'];
 		$calurl = $options['content'][$id]['calurl'];
@@ -93,7 +93,7 @@ class PT_nextpiratentreff {
 			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 		}
 		
-		$options = get_option("piratentools-npt");
+		$options = get_option("pt_nextpiratentreff");
 		
 		if ($_POST['pt-npt-action'] == "add") {
 			if (!$options["nextid"]) $options["nextid"] = 1;
@@ -104,7 +104,7 @@ class PT_nextpiratentreff {
 			$options["content"][$nextid]["calurl"] = $upd_calurl;
 			$options["content"][$nextid]["searchstring"] = $upd_searchstring;
 			$options["content"][$nextid]["offset"] = $upd_offset;
-			update_option("piratentools-npt", $options);
+			update_option("pt_nextpiratentreff", $options);
 		}
 		
 		if ($_POST['pt-npt-action'] == "del") {
@@ -116,7 +116,7 @@ class PT_nextpiratentreff {
 					unset($options["content"][$key]);
 				}
 			}
-			update_option("piratentools-npt", $options);
+			update_option("pt_nextpiratentreff", $options);
 		}
 		
 		include('adminmenu.php');
