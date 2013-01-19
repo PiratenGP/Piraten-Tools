@@ -29,7 +29,7 @@ License: GPL2
 
 <?php
 add_action( 'admin_menu', 'piratentools_main_menu' );
-
+wp_enqueue_style( "piratentools", plugin_dir_url(__FILE__)."style.css" );
 function piratentools_main_menu() {
 	//add_options_page( 'My Plugin Options', 'My Plugin', 'manage_options', 'my-unique-identifier', 'my_plugin_options' );
     add_menu_page( "Piraten-Tools", "Piraten-Tools", 0, "piratentools", "piratentools_main_options" );
