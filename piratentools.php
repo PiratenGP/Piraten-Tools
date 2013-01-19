@@ -6,7 +6,7 @@ Description: Piraten-Tools
 Version: 0.1
 Author: @stoppegp
 Author URI: https://twitter.com/stoppegp
-License: CC BY-SA 2.0
+License: GPL2
 */
 ?>
 <?php
@@ -47,5 +47,5 @@ function piratentools_main_options() {
 ?>
 
 <?php
-require('nextpiratentreff.php');
+require('nextpiratentreff/nextpiratentreff.php');
 ?>
