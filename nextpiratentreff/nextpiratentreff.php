@@ -101,7 +101,10 @@ class PT_nextpiratentreff {
 			$nextid = $options["nextid"]++;
 			$upd_calurl = $_POST['pt-npt-add-calurl'];
 			$upd_searchstring = $_POST['pt-npt-add-searchstring'];
-			$upd_offset = $_POST['pt-npt-add-offset'];
+			$upd_offset = 0;
+			if (is_numeric($_POST['pt-npt-add-offset'])) {
+				$upd_offset = $_POST['pt-npt-add-offset'];
+			}
 			$options["content"][$nextid]["calurl"] = $upd_calurl;
 			$options["content"][$nextid]["searchstring"] = $upd_searchstring;
 			$options["content"][$nextid]["offset"] = $upd_offset;
