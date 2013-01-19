@@ -1,6 +1,6 @@
 <div class="wrap">
 
-		<h2>Wiki Import</h2>
+		<h2>Piraten-Tools › Wiki Import</h2>
 		<form method="POST">
 		<h3>Neuer Eintrag</h3>
 		<table>

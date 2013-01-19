@@ -1,6 +1,6 @@
 <div class="wrap">
 
-		<h2>Next Piratentreff</h2>
+		<h2>Piraten-Tools › Next Piratentreff</h2>
 		<form method="POST">
 		<h3>Neue Suchmaske</h3>
 		<table>
