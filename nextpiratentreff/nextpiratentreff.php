@@ -109,7 +109,6 @@ class PT_nextpiratentreff {
 		}
 		
 		if ($_POST['pt-npt-action'] == "del") {
-			$nextid = $options["nextid"]++;
 			$del_ids = $_POST['pt-npt-del'];
 			
 			foreach ($del_ids as $key => $val) {
