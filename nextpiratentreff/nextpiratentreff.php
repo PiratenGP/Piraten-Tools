@@ -20,6 +20,7 @@ class PT_nextpiratentreff {
 				$jsEvt = array(
 					"id" => ($id+1),
 					"title" => $ev->getProperty('summary'),
+					"location" => $ev->getLocation(),
 					"start" => $ev->getStart(),
 					"end"   => $ev->getEnd()-1,
 					"allDay" => $ev->isWholeDay()
@@ -77,10 +78,12 @@ class PT_nextpiratentreff {
 
 		$e_title = $event0['title'];
 		$e_title2 = trim(str_replace($remove, "", $e_title));
+		$e_location = $event0['location'];
 		if ($event0) {
 			$string = $atts['output'];
 			$string = str_replace("%TITEL2%", $e_title2, $string);
 			$string = str_replace("%TITEL%", $e_title, $string);
+			$string = str_replace("%ORT%", $e_location, $string);
 			$string = preg_replace('/(\{(.*?)})/e', 'date_i18n("$2", $event0["start"])', $string);
 			//$string = strtr($string, $trans); 
 			return $string;
