@@ -23,6 +23,19 @@ function piratentools_main_menu() {
 function piratentools_main_options() {
 	echo '<div class="wrap">';
 	echo '<h2>Piraten-Tools</h2>';
+	?>
+	
+<h3>Next Piratentreff</h3>
+<p>Aus einem iCal-Kalender wird der nächste Termin gesucht, der einen bestimmten Suchbegriff im Titel enthält. Das Ergebnis kann dann per Shortcode eingebaut werden.
+Dadurch kann man z.B. automatisiert den nächsten Stammtisch-Termin ausgeben.
+(Anleitung tbd)</p>
+
+<h3>Wiki Import</h3>
+<p>VOn einer externen Website kann der Inhalt eines div-Containers mit bekannter ID ausgelesen und ausgegeben werden.
+Dadurch kann man zum Beispiel automatisiert die Tagesordnung des nächsten Stammtischs aus dem Piratenwiki ausgeben.
+(Anleitung tbd)</p>
+	
+	<?php
 	echo '</div>';
 }
 ?>
