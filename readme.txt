@@ -2,7 +2,7 @@ Piraten-Tools
 =================================================
 Sammlung von Wordpress-Plugins für die Homepage der Göppinger Piraten
 
-Version 1.0
+Version 1.1.0, 22.01.2013
 
 Autor: @stoppegp
 Lizenz: CC-BY-SA 3.0, http://creativecommons.org/licenses/by-sa/3.0/de/deed.de
@@ -12,6 +12,10 @@ Github: https://github.com/stoppegp/Piraten-Tools
 Benutzte Bibliotheken:
 - SG_iCalReader (Morten Fangel, xonev, Tanguy Pruvot): http://github.com/fangel/SG-iCalendar
 
+
+Changelog:
+= 22.01.2013 - v1.1.0 =
+-- Next Piratentreff: Neues Feature: n Einträge bei der Suche überspringen ("skip")
 
 =================================================
 
