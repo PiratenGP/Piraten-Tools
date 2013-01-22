@@ -90,7 +90,6 @@ class PT_nextpiratentreff {
 				PT_nextpiratentreff::$found[$id][$skip] = $event0;
 			}
 		}
-		print_r($event2);
 		$e_title = $event0['title'];
 		$e_title2 = trim(str_replace($remove, "", $e_title));
 		$e_location = $event0['location'];
