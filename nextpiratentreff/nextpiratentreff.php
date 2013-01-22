@@ -57,25 +57,40 @@ class PT_nextpiratentreff {
 	}
 	
 	static public function shortcode($atts) {
+		$event0 = null;
+		$event1 = null;
+		$event2 = null;
+	
 		$options = get_option("pt_nextpiratentreff");
 		$id = $atts['id'];	
+		if (!$options['content'][$id]) return;
+		
+		$skip = $atts['skip'];
+		if (!is_numeric($skip) || $skip < 0) $skip = 0;
+		
 		$searchstring = $options['content'][$id]['searchstring'];
 		$calurl = $options['content'][$id]['calurl'];
 		$offset = $options['content'][$id]['offset']*60;
 		$remove = $atts['remove'];
 		
-		if (PT_nextpiratentreff::$found[$id]) {
-			$event0 = PT_nextpiratentreff::$found[$id];
+		if (PT_nextpiratentreff::$found[$id][$skip]) {
+			$event0 = PT_nextpiratentreff::$found[$id][$skip];
 		} else {
 			$data = PT_nextpiratentreff::getcaldata($calurl);
 			foreach ($data as $val) {
-				if (strpos(" ".$val['title'], $searchstring) != 0 && $val['start'] > (time()-$offset) && ($val['start'] < $event0['start'] || !$event0) ) {
-					$event0 = $val;
-					PT_nextpiratentreff::$found[$id] = $event0;
+				if (strpos(" ".$val['title'], $searchstring) != 0 && $val['start'] > (time()-$offset)) {
+					$temp0 = $val['start'];
+					$event1[$temp0] = $val;
 				}
 			}
+			if (is_array($event1)) {
+				ksort($event1);
+				$event2 = array_values($event1);
+				$event0 = $event2[$skip];
+				PT_nextpiratentreff::$found[$id][$skip] = $event0;
+			}
 		}
-
+		print_r($event2);
 		$e_title = $event0['title'];
 		$e_title2 = trim(str_replace($remove, "", $e_title));
 		$e_location = $event0['location'];
