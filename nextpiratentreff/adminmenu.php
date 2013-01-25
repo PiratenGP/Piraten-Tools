@@ -59,12 +59,12 @@
 				<?php
 				if ($counter > 0) {
 				?>
-				<td colspan="4">&nbsp;</td>
+				<td colspan="5">&nbsp;</td>
 				<td><input type="submit" value="L&ouml;schen" /></td>
 				<?php
 				} else {
 				?>
-				<td colspan="5">Keine Einträge</td>
+				<td colspan="6">Keine Einträge</td>
 				<?php
 				}
 				?>
