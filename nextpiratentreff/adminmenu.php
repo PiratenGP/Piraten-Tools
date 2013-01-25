@@ -80,7 +80,7 @@
 		&nbsp;&nbsp;&nbsp;&nbsp;%TITEL% - Der Titel des Eintrags<br />
 		&nbsp;&nbsp;&nbsp;&nbsp;%TITEL2% - Der Titel des Eintrags, der Teil der mit "remove" definiert wurde wird entfernt<br />
 		&nbsp;&nbsp;&nbsp;&nbsp;%ORT% - Der Ort des Eintrags<br />
-		&nbsp;&nbsp;&nbsp;&nbsp;{} - In geschweiften Klammern können PHP-Datumsangaben definiert werden<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;{} - In geschweiften Klammern können PHP-Datumsangaben definiert werden, für <?php echo date("d.m.Y"); ?> also zum Beispiel {d.m.Y}<br />
 		<strong>remove="X"</strong>: Wird aus dem Titel herausgelöscht, s.o.<br />
 		<strong>else="X"</strong>: Wird angezeigt, wenn kein Termin gefunden wurde<br />
 		<strong>skip=X</strong>: So viele Termine werden bei der Suche übersprungen<br /></p>
