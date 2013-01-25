@@ -43,13 +43,17 @@
 				$counter = 0;
 				foreach ($options["content"] as $key => $val) {
 					$counter++;
+					$calecho = $val["calurl"];
+					if (strlen($calecho) > 60) {
+						$calecho = substr($calecho, 0, 30)." [...] ".substr($calecho, -30);
+					}
 					?>
 					<tr>
 						<td><?=$key;?></td>
-						<td><?=$val["calurl"];?></td>
+						<td title="<?= $val["calurl"];?>"><?=$calecho;?></td>
 						<td><?=$val["searchstring"];?></td>
 						<td><?=$val["offset"];?> min</td>
-						<td><pre>[pt-npt id=<?=$key;?> output="{d. F Y}" else=""]</pre></td>
+						<td><pre>[pt-npt id=<?=$key;?> output="%TITEL% {d. F Y}" else=""]</pre></td>
 						<td><input type="checkbox" name="pt-npt-del[<?=$key;?>]" value="1" /></td>
 					</tr>
 					<?
