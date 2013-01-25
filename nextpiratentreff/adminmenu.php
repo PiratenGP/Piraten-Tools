@@ -36,6 +36,7 @@
 				<td>Kalender-URL</td>
 				<td>Suchbegriff</td>
 				<td>Offset</td>
+				<td>Shortcode</td>
 				<td>&nbsp;</td>
 			</tr>
 			<?php
@@ -48,6 +49,7 @@
 						<td><?=$val["calurl"];?></td>
 						<td><?=$val["searchstring"];?></td>
 						<td><?=$val["offset"];?> min</td>
+						<td><pre>[pt-npt id=<?=$key;?> output="{d. F Y}" else=""]</pre></td>
 						<td><input type="checkbox" name="pt-npt-del[<?=$key;?>]" value="1" /></td>
 					</tr>
 					<?
@@ -70,4 +72,16 @@
 		</table>
 		<input type="hidden" name="pt-npt-action" value="del" />
 		</form>
+		
+		<h3>Anleitung</h3>
+		<p>Eine iCal-Datei wird nach einem Suchbegriff durchsucht und der nächste Termin wird herausgesucht. Zum Einbinden den Shortcode [pt-npt] verwenden mit folgenden Variablen:<br />
+		<strong>id=X</strong>: Die ID des Eintrags, s.o.<br />
+		<strong>output="X"</strong>: Was auf der Seite angezeigt werden soll. Dabei können folgende Platzhalter verwendet werden:<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;%TITEL% - Der Titel des Eintrags<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;%TITEL2% - Der Titel des Eintrags, der Teil der mit "remove" definiert wurde wird entfernt<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;%ORT% - Der Ort des Eintrags<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;{} - In geschweiften Klammern können PHP-Datumsangaben definiert werden<br />
+		<strong>remove="X"</strong>: Wird aus dem Titel herausgelöscht, s.o.<br />
+		<strong>else="X"</strong>: Wird angezeigt, wenn kein Termin gefunden wurde<br />
+		<strong>skip=X</strong>: So viele Termine werden bei der Suche übersprungen<br /></p>
 	</div>
