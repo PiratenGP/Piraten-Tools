@@ -90,4 +90,3 @@ add_shortcode( "pt-wi", array("PT_wikiimport", "shortcode"));
 add_action('init', array("PT_wikiimport", 'reload'));
 
 ?>
-

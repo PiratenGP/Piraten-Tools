@@ -8,9 +8,7 @@ Author: @stoppegp
 Author URI: https://github.com/stoppegp/Piraten-Tools
 License: CC-BY-SA 3.0
 */
-?>
 
-<?php
 add_action( 'admin_menu', 'piratentools_main_menu' );
 wp_enqueue_style( "piratentools", plugin_dir_url(__FILE__)."style.css" );
 function piratentools_main_menu() {
@@ -38,9 +36,7 @@ Dadurch kann man zum Beispiel automatisiert die Tagesordnung des nächsten Stamm
 	<?php
 	echo '</div>';
 }
-?>
 
-<?php
 require('nextpiratentreff/nextpiratentreff.php');
 require('wikiimport/wikiimport.php');
 ?>
