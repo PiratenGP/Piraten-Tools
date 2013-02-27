@@ -15,6 +15,11 @@
 				<small>ID eines DIV-Containers, dessen Inhalt ausgelesen werden soll.</small></td>
 			</tr>
 			<tr>
+				<td>BW-API:</td>
+				<td><input type="checkbox" name="pt-wi-add-bwapi" value="1" /><br />
+				<small>Die Daten sind nicht ganz so aktuell, dafür gibt es keine Probleme, wenn das Wiki down ist..</small></td>
+			</tr>
+			<tr>
 				<td>&nbsp;</td>
 				<td><input type="submit" value="Eintragen" /></td>
 			</tr>

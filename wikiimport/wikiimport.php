@@ -21,6 +21,40 @@ class PT_wikiimport {
 	}
 	
 
+	function update_bwapi($wikipage, $elementId = '', $maxlen = 40000){
+		$baseUrl = 'http://api.piraten-bw.de/wiki/';
+		$opts = array(
+			'http' => array(
+				'timeout' => 4
+			)
+		);
+		$context = stream_context_create($opts);
+		
+		if(empty($elementId)){
+			$url = $baseUrl . 'getpage/' . $wikipage;
+		}else{
+			$url = $baseUrl . 'get/' . $wikipage . '/' . $elementId;
+		}
+		
+		$result = file_get_contents($url, false, $context, -1, $maxlen);
+		echo "BWAPI";
+		return $result ? $result : null;
+	}
+	
+	function update_fgc($wikipage, $elementId) {
+		$base_url = "http://wiki.piratenpartei.de/";
+		$url = $base_url.$wikipage;
+		$content = file_get_contents($url);
+		if (!$content) $error = true;
+		preg_match_all('#<div id="'.$elementId.'">(.*?)</div>#sim', $content, $div_array);
+		
+		if ($div_array[1][0] != "" && !$error) {
+			return $div_array[1][0];
+		} else {
+			return null;
+		}
+	}
+	
 	static public function reload($id0 = 0) {
 		if (isset($_GET['ptwi_reload']) || ($id0 != 0)) {
 			if ($id0 == 0) {
@@ -32,14 +66,19 @@ class PT_wikiimport {
 			if (!$options["content"][$id]) return;
 			if ($id0 == 0 && ($_GET['ptwi_kennwort'] != $options["content"][$id]["kennwort"])) return;
 			
-			$error = false;
 			$url = $options['content'][$id]['pageurl'];
-			$content = file_get_contents($url);
-			if (!$content) $error = true;
-			preg_match_all('#<div id="'.$options['content'][$id]['divid'].'">(.*?)</div>#sim', $content, $div_array);
+			$divid = $options['content'][$id]['divid'];
 			
-			if ($div_array[1][0] != "" && !$error) {
-				$options['content'][$id]['content'] = $div_array[1][0];
+			if ($options["content"][$id]["bwapi"] == 1) {
+				$content = PT_wikiimport::update_bwapi($url, $divid);
+			} else {
+				$content = PT_wikiimport::update_fgc($url, $divid);
+			}
+			
+			if ($content == null) $error = true;
+			
+			if ($content != "" && !$error) {
+				$options['content'][$id]['content'] = $content;
 				update_option("pt_wikiimport", $options);
 				//echo "Reload erfolgreich.";
 
@@ -73,9 +112,15 @@ class PT_wikiimport {
 			$nextid = $options["nextid"]++;
 			$upd_pageurl = $_POST['pt-wi-add-pageurl'];
 			$upd_divid = $_POST['pt-wi-add-divid'];
+			$upd_bwapi = $_POST['pt-wi-add-bwapi'];
 			$options["content"][$nextid]["pageurl"] = $upd_pageurl;
 			$options["content"][$nextid]["divid"] = $upd_divid;
 			$options["content"][$nextid]["kennwort"] = PT_wikiimport::generatekennwort(10);
+			if ($upd_bwapi == 1) {
+				$options["content"][$nextid]["bwapi"] = true;
+			} else {
+				$options["content"][$nextid]["bwapi"] = false;
+			}
 			update_option("pt_wikiimport", $options);
 		}
 		
