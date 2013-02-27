@@ -5,6 +5,11 @@ class PT_wikiimport {
 	static public function shortcode($atts) {
 		$id = $atts['id'];
 		$else = $atts['else'];
+		
+		if ($atts['reload'] == 1) {
+			PT_wikiimport::reload($id);
+		}
+		
 		$options = get_option("pt_wikiimport");
 		
 		if ($options["content"][$id]["content"]) {
@@ -16,12 +21,16 @@ class PT_wikiimport {
 	}
 	
 
-	static public function reload() {
-		if (isset($_GET['ptwi_reload'])) {
-			$id = $_GET['ptwi_reload'];
+	static public function reload($id0 = 0) {
+		if (isset($_GET['ptwi_reload']) || ($id0 != 0)) {
+			if ($id0 == 0) {
+				$id = $_GET['ptwi_reload'];
+			} else {
+				$id = $id0;
+			}
 			$options = get_option("pt_wikiimport");
 			if (!$options["content"][$id]) return;
-			if ($_GET['ptwi_kennwort'] != $options["content"][$id]["kennwort"]) return;
+			if ($id0 == 0 && ($_GET['ptwi_kennwort'] != $options["content"][$id]["kennwort"])) return;
 			
 			$error = false;
 			$url = $options['content'][$id]['pageurl'];
@@ -32,7 +41,7 @@ class PT_wikiimport {
 			if ($div_array[1][0] != "" && !$error) {
 				$options['content'][$id]['content'] = $div_array[1][0];
 				update_option("pt_wikiimport", $options);
-				echo "Reload erfolgreich.";
+				//echo "Reload erfolgreich.";
 
 			}
 			

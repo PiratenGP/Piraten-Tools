@@ -67,5 +67,5 @@
 		<input type="hidden" name="pt-wi-action" value="del" />
 		</form>
 		<h3>Anleitung</h3>
-		<p><ol><li>Einen neuen Eintrag erstellen mit der URL zu der (Wiki-)Seite und der ID des DIV-Containers, der eingelesen werden soll</li><li>In eine Wordpress-Seite oder einen Beitrag den Shortcode aus der obigen Tabelle einfügen</li><li>Immer wenn nötig den Reload-Link aufrufen (funktioniert auch, wenn man nicht eingeloggt ist, deswegen den Link vertraulich behandeln!)</li></ol></p>
+		<p><ol><li>Einen neuen Eintrag erstellen mit der URL zu der (Wiki-)Seite und der ID des DIV-Containers, der eingelesen werden soll</li><li>In eine Wordpress-Seite oder einen Beitrag den Shortcode aus der obigen Tabelle einfügen</li><li>Immer wenn nötig den Reload-Link aufrufen (funktioniert auch, wenn man nicht eingeloggt ist, deswegen den Link vertraulich behandeln!)<br /><strong>oder:</strong> den Shortcode <pre>[pt-wi id=X reload=1]</pre> verwenden, dann wird die Seite bei jedem Aufruf aktualisiert.</li></ol></p>
 	</div>
