@@ -21,42 +21,6 @@ class PT_wikiimport {
 	}
 	
 
-<<<<<<< HEAD
-	function update_bwapi($wikipage, $elementId = '', $maxlen = 40000){
-		$baseUrl = 'http://api.piraten-bw.de/wiki/';
-		$opts = array(
-			'http' => array(
-				'timeout' => 4
-			)
-		);
-		$context = stream_context_create($opts);
-		
-		if(empty($elementId)){
-			$url = $baseUrl . 'getpage/' . $wikipage;
-		}else{
-			$url = $baseUrl . 'get/' . $wikipage . '/' . $elementId;
-		}
-		
-		$result = file_get_contents($url, false, $context, -1, $maxlen);
-		return $result ? $result : null;
-	}
-	
-	function update_fgc($wikipage, $elementId) {
-		$base_url = "http://wiki.piratenpartei.de/";
-		$url = $base_url.$wikipage;
-		$content = file_get_contents($url);
-		if (!$content) $error = true;
-		preg_match_all('#<div id="'.$elementId.'">(.*?)</div>#sim', $content, $div_array);
-		
-		if ($div_array[1][0] != "" && !$error) {
-			return $div_array[1][0];
-		} else {
-			return null;
-		}
-	}
-	
-=======
->>>>>>> parent of 6e32ced... BW-API hinzugefügt
 	static public function reload($id0 = 0) {
 		if (isset($_GET['ptwi_reload']) || ($id0 != 0)) {
 			if ($id0 == 0) {
