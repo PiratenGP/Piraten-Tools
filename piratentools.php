@@ -3,7 +3,7 @@
 Plugin Name: Piraten-Tools
 Plugin URI: https://github.com/stoppegp/Piraten-Tools
 Description: Piraten-Tools
-Version: 1.2.1
+Version: 1.2.2
 Author: @stoppegp
 Author URI: https://github.com/stoppegp/Piraten-Tools
 License: CC-BY-SA 3.0
