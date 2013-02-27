@@ -37,7 +37,6 @@ class PT_wikiimport {
 		}
 		
 		$result = file_get_contents($url, false, $context, -1, $maxlen);
-		echo "BWAPI";
 		return $result ? $result : null;
 	}
 	
