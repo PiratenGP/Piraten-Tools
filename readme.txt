@@ -2,7 +2,7 @@ Piraten-Tools
 =================================================
 Sammlung von Wordpress-Plugins für die Homepage der Göppinger Piraten
 
-Version 1.1.2, 25.01.2013
+Version 1.2.0, 27.02.2013
 
 Autor: @stoppegp
 Lizenz: CC-BY-SA 3.0, http://creativecommons.org/licenses/by-sa/3.0/de/deed.de
@@ -14,6 +14,9 @@ Benutzte Bibliotheken:
 
 
 Changelog:
+= 27.02.2013 - v1.2.0 =
+-- Auto-Aktualisieren beim Wiki-Import hinzugefügt
+-- Anpassungen bei der Anzeige
 = 25.01.2013 - v1.1.2 =
 -- Anleitungen hinzugefügt
 -- Bugfix: Unerwartete Ausgabe
