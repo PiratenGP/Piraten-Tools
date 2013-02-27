@@ -21,6 +21,7 @@ class PT_wikiimport {
 	}
 	
 
+<<<<<<< HEAD
 	function update_bwapi($wikipage, $elementId = '', $maxlen = 40000){
 		$baseUrl = 'http://api.piraten-bw.de/wiki/';
 		$opts = array(
@@ -54,6 +55,8 @@ class PT_wikiimport {
 		}
 	}
 	
+=======
+>>>>>>> parent of 6e32ced... BW-API hinzugefügt
 	static public function reload($id0 = 0) {
 		if (isset($_GET['ptwi_reload']) || ($id0 != 0)) {
 			if ($id0 == 0) {
@@ -65,19 +68,14 @@ class PT_wikiimport {
 			if (!$options["content"][$id]) return;
 			if ($id0 == 0 && ($_GET['ptwi_kennwort'] != $options["content"][$id]["kennwort"])) return;
 			
+			$error = false;
 			$url = $options['content'][$id]['pageurl'];
-			$divid = $options['content'][$id]['divid'];
+			$content = file_get_contents($url);
+			if (!$content) $error = true;
+			preg_match_all('#<div id="'.$options['content'][$id]['divid'].'">(.*?)</div>#sim', $content, $div_array);
 			
-			if ($options["content"][$id]["bwapi"] == 1) {
-				$content = PT_wikiimport::update_bwapi($url, $divid);
-			} else {
-				$content = PT_wikiimport::update_fgc($url, $divid);
-			}
-			
-			if ($content == null) $error = true;
-			
-			if ($content != "" && !$error) {
-				$options['content'][$id]['content'] = $content;
+			if ($div_array[1][0] != "" && !$error) {
+				$options['content'][$id]['content'] = $div_array[1][0];
 				update_option("pt_wikiimport", $options);
 				//echo "Reload erfolgreich.";
 
@@ -111,15 +109,9 @@ class PT_wikiimport {
 			$nextid = $options["nextid"]++;
 			$upd_pageurl = $_POST['pt-wi-add-pageurl'];
 			$upd_divid = $_POST['pt-wi-add-divid'];
-			$upd_bwapi = $_POST['pt-wi-add-bwapi'];
 			$options["content"][$nextid]["pageurl"] = $upd_pageurl;
 			$options["content"][$nextid]["divid"] = $upd_divid;
 			$options["content"][$nextid]["kennwort"] = PT_wikiimport::generatekennwort(10);
-			if ($upd_bwapi == 1) {
-				$options["content"][$nextid]["bwapi"] = true;
-			} else {
-				$options["content"][$nextid]["bwapi"] = false;
-			}
 			update_option("pt_wikiimport", $options);
 		}
 		
