@@ -1,6 +1,8 @@
 <?php
 
-require_once('ical/SG_iCal.php');
+if (!class_exists("SG_iCalReader")) {
+	require_once('ical/SG_iCal.php');
+}
 
 class PT_nextpiratentreff {
 
