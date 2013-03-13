@@ -1,6 +1,6 @@
 <?php
 
-require('ical/SG_iCal.php');
+require_once('ical/SG_iCal.php');
 
 class PT_nextpiratentreff {
 
