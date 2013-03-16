@@ -8,7 +8,7 @@
  * @license http://creativecommons.org/licenses/by-sa/2.5/dk/deed.en_GB CC-BY-SA-DK
  */
 
-class SG_iCal_Duration {
+class PT_SG_iCal_Duration {
 	protected $dur;
 
 	/**

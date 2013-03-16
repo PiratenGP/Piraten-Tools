@@ -8,7 +8,7 @@
  * @author Morten Fangel (C) 2008
  * @license http://creativecommons.org/licenses/by-sa/2.5/dk/deed.en_GB CC-BY-SA-DK
  */
-class SG_iCal_VTimeZone {
+class PT_SG_iCal_VTimeZone {
 	protected $tzid;
 	protected $daylight;
 	protected $standard;
@@ -79,8 +79,8 @@ class SG_iCal_VTimeZone {
 				return $this->cache[$ts];
 			}
 
-			$daylight_freq = new SG_iCal_Freq($this->daylight['rrule'], strtotime($this->daylight['dtstart']));
-			$standard_freq = new SG_iCal_Freq($this->standard['rrule'], strtotime($this->standard['dtstart']));
+			$daylight_freq = new PT_SG_iCal_Freq($this->daylight['rrule'], strtotime($this->daylight['dtstart']));
+			$standard_freq = new PT_SG_iCal_Freq($this->standard['rrule'], strtotime($this->standard['dtstart']));
 			$last_standard = $standard_freq->previousOccurrence($ts);
 			$last_dst = $daylight_freq->previousOccurrence($ts);
 			if( $last_dst > $last_standard ) {

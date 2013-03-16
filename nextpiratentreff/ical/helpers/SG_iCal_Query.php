@@ -7,7 +7,7 @@
  * @author Morten Fangel (C) 2008
  * @license http://creativecommons.org/licenses/by-sa/2.5/dk/deed.en_GB CC-BY-SA-DK
  */
-class SG_iCal_Query {
+class PT_SG_iCal_Query {
 	/**
 	 * Returns all events from the calendar between two timestamps
 	 *
@@ -19,11 +19,11 @@ class SG_iCal_Query {
 	 * @return SG_iCal_VEvent[]
 	 */
 	public static function Between( $ical, $start, $end ) {
-		if( $ical instanceof SG_iCalReader ) {
+		if( $ical instanceof PT_SG_iCalReader ) {
 			$ical = $ical->getEvents();
 		}
 		if( !is_array($ical) ) {
-			throw new Exception('SG_iCal_Query::Between called with invalid input!');
+			throw new Exception('PT_SG_iCal_Query::Between called with invalid input!');
 		}
 
 		$rtn = array();
@@ -44,11 +44,11 @@ class SG_iCal_Query {
 	 * @return SG_iCal_VEvent[]
 	 */
 	public static function After( $ical, $start ) {
-		if( $ical instanceof SG_iCalReader ) {
+		if( $ical instanceof PT_SG_iCalReader ) {
 			$ical = $ical->getEvents();
 		}
 		if( !is_array($ical) ) {
-			throw new Exception('SG_iCal_Query::After called with invalid input!');
+			throw new Exception('PT_SG_iCal_Query::After called with invalid input!');
 		}
 
 		$rtn = array();
@@ -69,11 +69,11 @@ class SG_iCal_Query {
 	 * @return SG_iCal_VEvent[]
 	 */
 	public static function Sort( $ical, $column ) {
-		if( $ical instanceof SG_iCalReader ) {
+		if( $ical instanceof PT_SG_iCalReader ) {
 			$ical = $ical->getEvents();
 		}
 		if( !is_array($ical) ) {
-			throw new Exception('SG_iCal_Query::Sort called with invalid input!');
+			throw new Exception('PT_SG_iCal_Query::Sort called with invalid input!');
 		}
 
 		$cmp = create_function('$a, $b', 'return strcmp($a->getProperty("' . $column . '"), $b->getProperty("' . $column . '"));');

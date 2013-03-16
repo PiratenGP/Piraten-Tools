@@ -1,6 +1,6 @@
 <?php
 
-if (!class_exists("SG_iCalReader")) {
+if (!class_exists("PT_SG_iCalReader")) {
 	require_once('ical/SG_iCal.php');
 }
 
@@ -10,8 +10,8 @@ class PT_nextpiratentreff {
 	static private $found = array();
 	
 	static private function parsecalfile($calfile) {
-		$ical = new SG_iCalReader($calfile);
-		$query = new SG_iCal_Query();
+		$ical = new PT_SG_iCalReader($calfile);
+		$query = new PT_SG_iCal_Query();
 
 		$evts = $ical->getEvents();
 

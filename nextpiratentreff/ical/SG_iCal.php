@@ -24,7 +24,7 @@ define('SG_ICALREADER_VERSION', '0.7.0');
  * @author Tanguy Pruvot (C) 2010
  * @license http://creativecommons.org/licenses/by-sa/2.5/dk/deed.en_GB CC-BY-SA-DK
  */
-class SG_iCal {
+class PT_SG_iCal {
 
 	//objects
 	public $information; //SG_iCal_VCalendar
@@ -54,7 +54,7 @@ class SG_iCal {
 	 */
 	public function setUrl( $url = false ) {
 		if( $url !== false ) {
-			SG_iCal_Parser::Parse($url, $this);
+			PT_SG_iCal_Parser::Parse($url, $this);
 		}
 	}
 
@@ -71,7 +71,7 @@ class SG_iCal {
 	 * Sets the calendar info for this calendar
 	 * @param SG_iCal_VCalendar $info
 	 */
-	public function setCalendarInfo( SG_iCal_VCalendar $info ) {
+	public function setCalendarInfo( PT_SG_iCal_VCalendar $info ) {
 		$this->information = $info;
 	}
 
@@ -107,7 +107,7 @@ class SG_iCal {
 	 * Adds a new timezone to this calendar
 	 * @param SG_iCal_VTimeZone $tz
 	 */
-	public function addTimeZone( SG_iCal_VTimeZone $tz ) {
+	public function addTimeZone( PT_SG_iCal_VTimeZone $tz ) {
 		$this->timezones[] = $tz;
 	}
 
@@ -123,7 +123,7 @@ class SG_iCal {
 	 * Adds a event to this calendar
 	 * @param SG_iCal_VEvent $event
 	 */
-	public function addEvent( SG_iCal_VEvent $event ) {
+	public function addEvent( PT_SG_iCal_VEvent $event ) {
 		$this->events[] = $event;
 	}
 }
@@ -131,4 +131,4 @@ class SG_iCal {
 /**
  * For legacy reasons, we keep the name SG_iCalReader..
  */
-class SG_iCalReader extends SG_iCal {}
+class PT_SG_iCalReader extends PT_SG_iCal {}

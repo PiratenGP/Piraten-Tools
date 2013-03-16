@@ -9,7 +9,7 @@
  * @author Morten Fangel (C) 2008
  * @license http://creativecommons.org/licenses/by-sa/2.5/dk/deed.en_GB CC-BY-SA-DK
  */
-class SG_iCal_Factory {
+class PT_SG_iCal_Factory {
 	/**
 	 * Returns a new block-object for the section/data-pair. The list
 	 * of returned objects is:
@@ -23,20 +23,20 @@ class SG_iCal_Factory {
 	 * @param $section string
 	 * @param SG_iCal_Line[]
 	 */
-	public static function factory( SG_iCal $ical, $section, $data ) {
+	public static function factory( PT_SG_iCal $ical, $section, $data ) {
 		switch( $section ) {
 			case "vcalendar":
 				require_once dirname(__FILE__).'/../blocks/SG_iCal_VCalendar.php'; // BUILD: Remove line
-				return new SG_iCal_VCalendar(SG_iCal_Line::Remove_Line($data), $ical );
+				return new PT_SG_iCal_VCalendar(PT_SG_iCal_Line::Remove_Line($data), $ical );
 			case "vtimezone":
 				require_once dirname(__FILE__).'/../blocks/SG_iCal_VTimeZone.php'; // BUILD: Remove line
-				return new SG_iCal_VTimeZone(SG_iCal_Line::Remove_Line($data), $ical );
+				return new PT_SG_iCal_VTimeZone(PT_SG_iCal_Line::Remove_Line($data), $ical );
 			case "vevent":
 				require_once dirname(__FILE__).'/../blocks/SG_iCal_VEvent.php'; // BUILD: Remove line
-				return new SG_iCal_VEvent($data, $ical );
+				return new PT_SG_iCal_VEvent($data, $ical );
 
 			default:
-				return new ArrayObject(SG_iCal_Line::Remove_Line((array) $data) );
+				return new ArrayObject(PT_SG_iCal_Line::Remove_Line((array) $data) );
 		}
 	}
 }

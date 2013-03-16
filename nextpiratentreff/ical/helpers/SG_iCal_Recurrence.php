@@ -12,7 +12,7 @@
  * @author Steven Oxley
  * @license http://creativecommons.org/licenses/by-sa/2.5/dk/deed.en_GB CC-BY-SA-DK
  */
-class SG_iCal_Recurrence {
+class PT_SG_iCal_Recurrence {
 
 	public $rrule;
 
@@ -48,7 +48,7 @@ class SG_iCal_Recurrence {
 	 * @param object $line an SG_iCal_Line object which will be parsed to get the
 	 * desired information.
 	 */
-	public function __construct(SG_iCal_Line $line) {
+	public function __construct(PT_SG_iCal_Line $line) {
 		$this->parseLine($line->getData());
 	}
 

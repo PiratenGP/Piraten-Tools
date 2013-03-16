@@ -23,7 +23,7 @@
  * @license http://creativecommons.org/licenses/by-sa/2.5/dk/deed.en_GB CC-BY-SA-DK
  */
  
- function in_array2($a, $b) {
+ function PT_SG_iCal_in_array2($a, $b) {
 	if (is_array($b)) {
 		return in_array($a, $b);
 	} else {
@@ -31,7 +31,7 @@
 	}
  }
  
-class SG_iCal_Freq {
+class PT_SG_iCal_Freq {
 	protected $weekdays = array('MO'=>'monday', 'TU'=>'tuesday', 'WE'=>'wednesday', 'TH'=>'thursday', 'FR'=>'friday', 'SA'=>'saturday', 'SU'=>'sunday');
 	protected $knownRules = array('month', 'weekno', 'day', 'monthday', 'yearday', 'hour', 'minute'); //others : 'setpos', 'second'
 	protected $ruleModifiers = array('wkst');
@@ -176,7 +176,7 @@ class SG_iCal_Freq {
 	 */
 	public function firstOccurrence() {
 		$t = $this->start;
-		if (in_array2($t, $this->excluded))
+		if (PT_SG_iCal_in_array2($t, $this->excluded))
 			$t = $this->findNext($t);
 		return $t;
 	}
@@ -237,7 +237,7 @@ class SG_iCal_Freq {
 		//set the timestamp of the offset (ignoring hours and minutes unless we want them to be
 		//part of the calculations.
 		if($debug) echo 'O: ' . date('r', $offset) . "\n";
-		$hour = (in_array2($this->freq, array('hourly','minutely')) && $offset > $this->start) ? date('H', $offset) : date('H', $this->start);
+		$hour = (PT_SG_iCal_in_array2($this->freq, array('hourly','minutely')) && $offset > $this->start) ? date('H', $offset) : date('H', $this->start);
 		$minute = (($this->freq == 'minutely' || isset($this->rules['byminute'])) && $offset > $this->start) ? date('i', $offset) : date('i', $this->start);
 		$t = mktime($hour, $minute, date('s', $this->start), date('m', $offset), date('d', $offset), date('Y',$offset));
 		if($debug) echo 'START: ' . date('r', $t) . "\n";
@@ -245,7 +245,7 @@ class SG_iCal_Freq {
 		if( $this->simpleMode ) {
 			if( $offset < $t ) {
 				$ts = $t;
-				if ($ts && in_array2($ts, $this->excluded))
+				if ($ts && PT_SG_iCal_in_array2($ts, $this->excluded))
 					$ts = $this->findNext($ts);
 			} else {
 				$ts = $this->findStartingPoint( $t, $this->rules['interval'], false );
@@ -297,7 +297,7 @@ class SG_iCal_Freq {
 			if($debug) echo 'Not found' . "\n";
 			$ts = $this->findNext( $this->findStartingPoint( $offset, $this->rules['interval'] ) );
 		}
-		if ($ts && in_array2($ts, $this->excluded))
+		if ($ts && PT_SG_iCal_in_array2($ts, $this->excluded))
 			return $this->findNext($ts);
 
 		return $ts;
@@ -398,7 +398,7 @@ class SG_iCal_Freq {
 
 			$_t = strtotime($s, $t);
 
-			if( $_t == $t && in_array2($this->freq, array('monthly', 'yearly')) ) {
+			if( $_t == $t && PT_SG_iCal_in_array2($this->freq, array('monthly', 'yearly')) ) {
 				// Yes. This is not a great idea.. but hey, it works.. for now
 				$s = 'next ' . $d . ' ' . date('H:i:s',$t);
 				$_t = strtotime($s, $_t);
@@ -493,13 +493,13 @@ class SG_iCal_Freq {
 			return false;
 		}
 
-		if (in_array2($t, $this->excluded)) {
+		if (PT_SG_iCal_in_array2($t, $this->excluded)) {
 			return false;
 		}
 
 		if( isset($this->rules['bymonth']) ) {
 			$months = explode(',', $this->rules['bymonth']);
-			if( !in_array2(date('m', $t), $months)) {
+			if( !PT_SG_iCal_in_array2(date('m', $t), $months)) {
 				return false;
 			}
 		}
@@ -508,13 +508,13 @@ class SG_iCal_Freq {
 			foreach( $days As $i => $k ) {
 				$days[$i] = $this->weekdays[ preg_replace('/[^A-Z]/', '', $k)];
 			}
-			if( !in_array2(strtolower(date('l', $t)), $days)) {
+			if( !PT_SG_iCal_in_array2(strtolower(date('l', $t)), $days)) {
 				return false;
 			}
 		}
 		if( isset($this->rules['byweekno']) ) {
 			$weeks = explode(',', $this->rules['byweekno']);
-			if( !in_array2(date('W', $t), $weeks)) {
+			if( !PT_SG_iCal_in_array2(date('W', $t), $weeks)) {
 				return false;
 			}
 		}
@@ -525,13 +525,13 @@ class SG_iCal_Freq {
 					$weekdays[$i] = date('t', $t) + $k + 1;
 				}
 			}
-			if( !in_array2(date('d', $t), $weekdays)) {
+			if( !PT_SG_iCal_in_array2(date('d', $t), $weekdays)) {
 				return false;
 			}
 		}
 		if( isset($this->rules['byhour']) ) {
 			$hours = explode(',', $this->rules['byhour']);
-			if( !in_array2(date('H', $t), $hours)) {
+			if( !PT_SG_iCal_in_array2(date('H', $t), $hours)) {
 				return false;
 			}
 		}
@@ -544,16 +544,16 @@ class SG_iCal_Freq {
 			return false;
 		if( $rule == 'month' && $freq == 'yearly')
 			return true;
-		if( $rule == 'monthday' && in_array2($freq, array('yearly', 'monthly')) && !isset($this->rules['byday']))
+		if( $rule == 'monthday' && PT_SG_iCal_in_array2($freq, array('yearly', 'monthly')) && !isset($this->rules['byday']))
 			return true;
 		// TODO: is it faster to do monthday first, and ignore day if monthday exists? - prolly by a factor of 4..
 		if( $rule == 'yearday' && $freq == 'yearly' )
 			return true;
 		if( $rule == 'weekno' && $freq == 'yearly' )
 			return true;
-		if( $rule == 'day' && in_array2($freq, array('yearly', 'monthly', 'weekly')))
+		if( $rule == 'day' && PT_SG_iCal_in_array2($freq, array('yearly', 'monthly', 'weekly')))
 			return true;
-		if( $rule == 'hour' && in_array2($freq, array('yearly', 'monthly', 'weekly', 'daily')))
+		if( $rule == 'hour' && PT_SG_iCal_in_array2($freq, array('yearly', 'monthly', 'weekly', 'daily')))
 			return true;
 		if( $rule == 'minute' )
 			return true;

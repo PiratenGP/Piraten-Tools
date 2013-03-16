@@ -14,7 +14,7 @@
  * @author Morten Fangel (C) 2008
  * @license http://creativecommons.org/licenses/by-sa/2.5/dk/deed.en_GB CC-BY-SA-DK
  */
-class SG_iCal_Line implements ArrayAccess, Countable, IteratorAggregate {
+class PT_SG_iCal_Line implements ArrayAccess, Countable, IteratorAggregate {
 	protected $ident;
 	protected $data;
 	protected $params = array();
@@ -99,7 +99,7 @@ class SG_iCal_Line implements ArrayAccess, Countable, IteratorAggregate {
 		foreach( $arr AS $k => $v ) {
 			if(is_array($v)) {
 				$rtn[$k] = self::Remove_Line($v);
-			} elseif( $v instanceof SG_iCal_Line ) {
+			} elseif( $v instanceof PT_SG_iCal_Line ) {
 				$rtn[$k] = $v->getData();
 			} else {
 				$rtn[$k] = $v;
