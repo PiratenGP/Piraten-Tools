@@ -82,7 +82,9 @@ class PT_nextpiratentreff {
 			foreach ($data as $val) {
 				if (strpos(" ".$val['title'], $searchstring) != 0 && $val['start'] > (time()-$offset)) {
 					$temp0 = $val['start'];
-					$event1[$temp0] = $val;
+                    if (!isset($event1[$temp0])) {
+                        $event1[$temp0] = $val;
+                    }
 				}
 			}
 			if (is_array($event1)) {
