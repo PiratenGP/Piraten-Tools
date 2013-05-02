@@ -1,5 +1,7 @@
 <?php
 
+include_once('simple_html_dom.php');
+
 class PT_wikiimport {
 
 	static public function shortcode($atts) {
@@ -34,12 +36,13 @@ class PT_wikiimport {
 			
 			$error = false;
 			$url = $options['content'][$id]['pageurl'];
-			$content = file_get_contents($url);
+			$content = file_get_html($url);
 			if (!$content) $error = true;
-			preg_match_all('#<div id="'.$options['content'][$id]['divid'].'">(.*?)</div>#sim', $content, $div_array);
 			
-			if ($div_array[1][0] != "" && !$error) {
-				$options['content'][$id]['content'] = $div_array[1][0];
+            $divfound = $content->find('div[id='.$options['content'][$id]['divid'].']');
+            
+			if ($divfound[0] != "" && !$error) {
+				$options['content'][$id]['content'] = $divfound[0];
 				update_option("pt_wikiimport", $options);
 				//echo "Reload erfolgreich.";
 
