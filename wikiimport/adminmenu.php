@@ -7,7 +7,7 @@
 			<tr>
 				<td>Seiten-URL:</td>
 				<td><input type="text" size="100" name="pt-wi-add-pageurl" /><br />
-				<small>URL zu einer Wiki-Seite (nur der Teil nach wiki.piratenpartei.de/)</small></td>
+				<small>URL zu einer Wiki-Seite (vollständige URL)</small></td>
 			</tr>
 			<tr>
 				<td>DIV-ID:</td>
