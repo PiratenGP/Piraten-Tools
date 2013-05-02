@@ -44,9 +44,15 @@ class PT_wikiimport {
             $divfound = $content->find('div[id='.$options['content'][$id]['divid'].']');
             
 			if ($divfound[0] != "" && !$error) {
-				$options['content'][$id]['content'] = $divfound[0];
-				update_option("pt_wikiimport", $options);
-				//echo "Reload erfolgreich.";
+            
+                $txt = $divfound[0];
+                $mainurl = parse_url($url, PHP_URL_SCHEME)."://".parse_url($url, PHP_URL_HOST)."/";
+                $complurl = dirname($url."asd")."/";
+                $txt = preg_replace("/(href|src)\=\"\//", "$1=\"$mainurl$2", $txt);
+                $txt = preg_replace("/(href|src)\=\"([^(http)])/", "$1=\"$complurl$2", $txt);
+                
+                $options['content'][$id]['content'] = $txt;
+                update_option("pt_wikiimport", $options);
 
 			}
 			
