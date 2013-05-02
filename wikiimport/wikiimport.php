@@ -1,6 +1,8 @@
 <?php
 
-include_once('simple_html_dom.php');
+if (!function_exists("file_get_html")) {
+    include_once('simple_html_dom.php');
+}
 
 class PT_wikiimport {
 
