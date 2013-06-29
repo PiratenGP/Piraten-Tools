@@ -41,7 +41,11 @@ class PT_wikiimport {
 			$content = file_get_html($url);
 			if (!$content) $error = true;
 			
-            $divfound = $content->find('div[id='.$options['content'][$id]['divid'].']');
+            if (isset($options['content'][$id]['divid']) && ($options['content'][$id]['divid'] != "")) {
+                $divfound = $content->find('div[id='.$options['content'][$id]['divid'].']');
+            } else {
+                $divfound[0] = $content;
+            }
             
 			if ($divfound[0] != "" && !$error) {
             
