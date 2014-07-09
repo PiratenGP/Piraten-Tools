@@ -12,7 +12,7 @@ class PT_nextpiratentreff {
 	static private function parsecalfile($calfile) {
 		$ical = new PT_SG_iCalReader($calfile);
 		$query = new PT_SG_iCal_Query();
-
+		
 		$evts = $ical->getEvents();
 
 
@@ -48,6 +48,7 @@ class PT_nextpiratentreff {
 
 			}
 		}
+		//print_r($ical->getTimeZoneInfo());
 		PT_nextpiratentreff::$data[$calfile] = $data;
 	}
 	
@@ -102,8 +103,7 @@ class PT_nextpiratentreff {
 			$string = str_replace("%TITEL2%", $e_title2, $string);
 			$string = str_replace("%TITEL%", $e_title, $string);
 			$string = str_replace("%ORT%", $e_location, $string);
-			$string = preg_replace('/(\{(.*?)})/e', 'date_i18n("$2", $event0["start"])', $string);
-			//$string = strtr($string, $trans); 
+			$string = preg_replace('/(\{(.*?)})/e', 'date_i18n("$2", strtotime(get_date_from_gmt( date( "Y-m-d H:i:s", $event0["start"] ))), false)', $string);
 			return $string;
 		} else {
 			return $atts['else'];
