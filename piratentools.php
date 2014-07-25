@@ -29,7 +29,7 @@ Dadurch kann man z.B. automatisiert den nächsten Stammtisch-Termin ausgeben.
 (Anleitung tbd)</p>
 
 <h3>Wiki Import</h3>
-<p>VOn einer externen Website kann der Inhalt eines div-Containers mit bekannter ID ausgelesen und ausgegeben werden.
+<p>Von einer externen Website kann der Inhalt eines div-Containers mit bekannter ID ausgelesen und ausgegeben werden.
 Dadurch kann man zum Beispiel automatisiert die Tagesordnung des nächsten Stammtischs aus dem Piratenwiki ausgeben.
 (Anleitung tbd)</p>
 	
